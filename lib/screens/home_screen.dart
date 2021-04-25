@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monopoly_web/screens/number_of_players_screen.dart';
 import 'package:monopoly_web/screens/rules_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,9 +25,16 @@ class HomeScreen extends StatelessWidget {
                   child: Image.asset('assets/Screens/monopoly-enterance.png'),
                 ),
                 SizedBox(height: 100),
-                RedRoundButton("Play", () {
-                  print("Play");
-                }),
+                Hero(
+                  tag: "PlayerCount",
+                  child: RedRoundButton("Play", () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => NumberOfPlayersScreen()),
+                    );
+                  }),
+                ),
                 SizedBox(height: 20),
                 RedRoundButton("Rules", () {
                   Navigator.push(context,
