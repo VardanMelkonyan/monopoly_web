@@ -11,7 +11,7 @@ class Monopoly extends StatelessWidget {
     return MaterialApp(
       title: 'Monopoly',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.red,
       ),
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
