@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
+import 'package:monopoly_web/screens/rules_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -8,46 +7,67 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.blueGrey[900],
         body: Container(
-          child: Column(
-            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset('../assets/Screens/monopoly_entrance.png'),
-              SizedBox(height: 60),
-              Text(
-                "Welcome to Monopoly!",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('background.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Center(
+            child: Column(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 100),
+                SizedBox(
+                  height: 250,
+                  child: Image.asset('assets/Screens/monopoly-enterance.png'),
                 ),
-              ),
-              Row(
-                children: [
-                  SizedBox(width: 60),
-                  Image.asset("../assets/Screens/left_man.png"),
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        "Monopoly, real-estate board game, in which the player’s goal is to remain\n" +
-                            "financially solvent while forcing opponents into bankruptcy by  buying\n" +
-                            "and developing pieces of property. Let's see whether you can do that.\n" +
-                            "If you are ready to become rich click Start else click Exit!!!\n",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                  Image.asset("../assets/Screens/right_man.png"),
-                  SizedBox(width: 60),
-                ],
-              ),
-              SizedBox(),
-            ],
+                SizedBox(height: 100),
+                RedRoundButton("Play", () {
+                  print("Play");
+                }),
+                SizedBox(height: 20),
+                RedRoundButton("Rules", () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => RulesSceeen()));
+                }),
+              ],
+            ),
           ),
         ));
+  }
+}
+
+class RedRoundButton extends StatelessWidget {
+  final String text;
+  final Function onPress;
+
+  const RedRoundButton(this.text, this.onPress);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0),
+                side: BorderSide(color: Colors.red))),
+        backgroundColor: MaterialStateProperty.all<Color>(
+          Color.fromARGB(255, 235, 61, 0),
+        ),
+      ),
+      onPressed: onPress,
+      child: Container(
+        width: 200,
+        height: 60,
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+        ),
+      ),
+    );
   }
 }
