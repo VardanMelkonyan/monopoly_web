@@ -1,7 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:monopoly_web/model/player.dart';
 import 'package:monopoly_web/model/utility.dart';
+import 'package:monopoly_web/widgets/chance_and_chest_alertdialog.dart';
 import 'package:monopoly_web/widgets/just_button.dart';
 import 'package:monopoly_web/widgets/player_positioned.dart';
 
@@ -12,10 +14,6 @@ class BoardScreen extends StatefulWidget {
 
 class _BoardScreenState extends State<BoardScreen> {
   List<int> dice = [1, 3];
-  double boardSize = 0;
-  double margin = 0;
-  double leftStart = 0;
-  double rightStart = 0;
 
   void roll() {
     Random r = Random();
@@ -25,20 +23,21 @@ class _BoardScreenState extends State<BoardScreen> {
     });
   }
 
+  AlertDialog _chanceOrCommunityDialog(BuildContext context) {
+    return chanceOrCommunityDialog(context,
+        Player(name: "Vardan", figure: Figure.hat, money: 1000), 11, false);
+  }
+
   @override
   Widget build(BuildContext context) {
-    boardSize = getScreenHeight(context) - (2 * 16);
-    margin = 58.5 * boardSize / 722.4;
-    leftStart = 37.5 * boardSize / 722.4;
-    rightStart = 68 * boardSize / 722.4;
-    print(boardSize);
     print(dice);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Container(
-            child: Row(children: [
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Stack(
+            alignment: Alignment.center,
             children: [
               Image.asset('assets/board(0).png'),
               PlayerPositioned(
@@ -64,33 +63,48 @@ class _BoardScreenState extends State<BoardScreen> {
                 isLeft: false,
                 isTop: true,
               ),
+              Expanded(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 10),
+                    child: SizedBox(
+                      width: 180,
+                      height: 180,
+                      child: Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: 50,
+                                child: Image.asset(
+                                    'assets/dice/dice${dice[0]}.png'),
+                              ),
+                              Spacer(),
+                            ],
+                          ),
+                          SizedBox(width: 80),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Spacer(),
+                              SizedBox(
+                                width: 50,
+                                child: Image.asset(
+                                    'assets/dice/dice${dice[1]}.png'),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20)
             ],
           ),
           SizedBox(width: 100),
-          Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 50,
-                      child: Image.asset('assets/dice/dice${dice[0]}.png'),
-                    ),
-                    SizedBox(width: 10),
-                    SizedBox(
-                      width: 50,
-                      child: Image.asset('assets/dice/dice${dice[1]}.png'),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                JustButton(
-                  title: "Roll",
-                  color: Colors.red,
-                  onPressed: roll,
-                )
-              ])
         ])),
       ),
     );
