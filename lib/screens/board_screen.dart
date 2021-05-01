@@ -65,38 +65,19 @@ class _BoardScreenState extends State<BoardScreen> {
               ),
               Expanded(
                 child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10, top: 10),
-                    child: SizedBox(
-                      width: 180,
-                      height: 180,
-                      child: Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 50,
-                                child: Image.asset(
-                                    'assets/dice/dice${dice[0]}.png'),
-                              ),
-                              Spacer(),
-                            ],
-                          ),
-                          SizedBox(width: 80),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Spacer(),
-                              SizedBox(
-                                width: 50,
-                                child: Image.asset(
-                                    'assets/dice/dice${dice[1]}.png'),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                  child: SizedBox(
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 50,
+                          child: Image.asset('assets/dice/dice${dice[0]}.png'),
+                        ),
+                        SizedBox(width: 170),
+                        SizedBox(
+                          width: 50,
+                          child: Image.asset('assets/dice/dice${dice[1]}.png'),
+                        ),
+                      ],
                     ),
                   ),
                 ),

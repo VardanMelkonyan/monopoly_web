@@ -18,7 +18,7 @@ class Monopoly extends StatelessWidget {
         fontFamily: 'FredokaOne',
       ),
       debugShowCheckedModeBanner: false,
-      home: BoardScreen(),
+      home: HomeScreen(),
     );
   }
 }
