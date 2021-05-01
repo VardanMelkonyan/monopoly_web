@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_web/model/utility.dart';
+import 'package:monopoly_web/screens/board_screen.dart';
 import 'package:monopoly_web/screens/home_screen.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class Monopoly extends StatelessWidget {
         fontFamily: 'FredokaOne',
       ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: BoardScreen(),
     );
   }
 }

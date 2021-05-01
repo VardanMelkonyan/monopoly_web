@@ -23,6 +23,8 @@ flutter:
 
   assets:
     - assets/
+    - assets/Chances/
+    - assets/Community/
     - assets/dice/
     - assets/images/
     - assets/Screens/
