@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monopoly_web/model/utility.dart';
 import 'package:monopoly_web/screens/home_screen.dart';
 
 void main() {
@@ -11,7 +12,9 @@ class Monopoly extends StatelessWidget {
     return MaterialApp(
       title: 'Monopoly',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primaryColor: merColor,
+        canvasColor: merColor,
+        fontFamily: 'FredokaOne',
       ),
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
