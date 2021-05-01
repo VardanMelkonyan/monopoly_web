@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:monopoly_web/screens/number_of_players_screen.dart';
+import 'package:monopoly_web/model/utility.dart';
+import 'package:monopoly_web/screens/waiting_room_screen.dart';
 import 'package:monopoly_web/screens/rules_screen.dart';
+import 'package:monopoly_web/widgets/just_button.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -27,55 +29,30 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 100),
                 Hero(
                   tag: "PlayerCount",
-                  child: RedRoundButton("Play", () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => NumberOfPlayersScreen()),
-                    );
-                  }),
+                  child: JustButton(
+                      title: "Play",
+                      color: merColor,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => WaitingRoomScreen()),
+                        );
+                      }),
                 ),
                 SizedBox(height: 20),
-                RedRoundButton("Rules", () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => RulesSceeen()));
-                }),
+                JustButton(
+                    title: "Rules",
+                    color: merColor,
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RulesSceeen()));
+                    }),
               ],
             ),
           ),
         ));
-  }
-}
-
-class RedRoundButton extends StatelessWidget {
-  final String text;
-  final Function onPress;
-
-  const RedRoundButton(this.text, this.onPress);
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50.0),
-                side: BorderSide(color: Colors.red))),
-        backgroundColor: MaterialStateProperty.all<Color>(
-          Color.fromARGB(255, 235, 61, 0),
-        ),
-      ),
-      onPressed: onPress,
-      child: Container(
-        width: 200,
-        height: 60,
-        child: Center(
-          child: Text(
-            text,
-            style: TextStyle(color: Colors.white, fontSize: 18),
-          ),
-        ),
-      ),
-    );
   }
 }

@@ -4,8 +4,6 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 class RulesSceeen extends StatefulWidget {
-  RulesSceeen({Key key}) : super(key: key);
-
   @override
   _RulesSceeenState createState() => _RulesSceeenState();
 }
@@ -15,7 +13,6 @@ class _RulesSceeenState extends State<RulesSceeen> {
 
   @override
   void initState() {
-    print("object");
     readJson();
     super.initState();
   }
@@ -50,6 +47,7 @@ class _RulesSceeenState extends State<RulesSceeen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Rules of the game"),
       ),
