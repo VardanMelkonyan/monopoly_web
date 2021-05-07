@@ -2,9 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:monopoly_web/model/utility.dart';
 import 'package:monopoly_web/screens/waiting_room_screen.dart';
 import 'package:monopoly_web/screens/rules_screen.dart';
+import 'package:monopoly_web/service/networking.dart';
 import 'package:monopoly_web/widgets/just_button.dart';
 
 class HomeScreen extends StatelessWidget {
+  Future _play(BuildContext context) async {
+    String gameId = await Networking.start();
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WaitingRoomScreen(gameId),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,11 +44,7 @@ class HomeScreen extends StatelessWidget {
                       title: "Play",
                       color: merColor,
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => WaitingRoomScreen()),
-                        );
+                        _play(context);
                       }),
                 ),
                 SizedBox(height: 20),

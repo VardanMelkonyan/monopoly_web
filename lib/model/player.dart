@@ -5,13 +5,14 @@ import 'package:monopoly_web/model/utility.dart';
 class Player {
   final String name;
   final Figure figure;
+  int position;
   int money;
   List<PropertyModel> properties;
 
   Player(
       {@required this.name,
       @required this.figure,
-      @required this.money,
+      this.money,
       this.properties});
 
   @override

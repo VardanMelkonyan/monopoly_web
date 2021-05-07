@@ -28,7 +28,8 @@ class PlayerPositioned extends StatelessWidget {
   Widget build(BuildContext context) {
     boardSize = getScreenHeight(context) - (2 * 16);
     int pole =
-        position < 11 ? 0 : (position < 21 ? 1 : (position < 31 ? 2 : 3));
+        position < 10 ? 0 : (position < 20 ? 1 : (position < 30 ? 2 : 3));
+    print(position);
 
     double right;
     double left;
